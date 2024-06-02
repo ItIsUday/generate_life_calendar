@@ -250,7 +250,7 @@ def gen_calendar(birthdate, title, age, filename, darken_until_date, sidebar_tex
         ctx.move_to((DOC_WIDTH / 2) - (w / 2), (Y_MARGIN / 2) - (h / 2) + 15)
         ctx.show_text(subtitle_text)
 
-    date = back_up_to_monday(birthdate)
+    date = birthdate
 
     # Draw 52x90 grid of squares
     x_margin = draw_grid(ctx, date, birthdate, age, darken_until_date)

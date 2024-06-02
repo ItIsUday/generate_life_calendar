@@ -29,10 +29,7 @@ is 29x40 inches, for best printing results)
 
 Several additional features make navigation through the calendar a bit easier;
 
-1. Rather than just starting exactly on your birthday, it starts on the last
-   Monday before your birthday (i.e. the first day of the week you were born).
-   This makes it much easier to identify which box holds a particular date, since
-   every box starts with a Monday and represents "the week starting on <date>"
+1. The starting date is your birthdate (inclusive)
 
 2. For each row, the date of the first day of the first box in the row is
    printed on the right hand side. This date is always a Monday, as explained in
