@@ -218,7 +218,7 @@ def draw_grid(ctx, date, birthdate, age, darken_until_date):
     return x_margin
 
 def gen_calendar(birthdate, title, age, filename, darken_until_date, sidebar_text=None,
-                 subtitle_text=None):
+                 subtitle_text=None, origin_date='birthdate'):
     if len(title) > MAX_TITLE_SIZE:
         raise ValueError("Title can't be longer than %d characters"
             % MAX_TITLE_SIZE)
@@ -250,7 +250,7 @@ def gen_calendar(birthdate, title, age, filename, darken_until_date, sidebar_tex
         ctx.move_to((DOC_WIDTH / 2) - (w / 2), (Y_MARGIN / 2) - (h / 2) + 15)
         ctx.show_text(subtitle_text)
 
-    date = birthdate
+    date = birthdate if origin_date == 'birthdate' else back_up_to_monday(birthdate)
 
     # Draw 52x90 grid of squares
     x_margin = draw_grid(ctx, date, birthdate, age, darken_until_date)
@@ -299,13 +299,19 @@ def main():
     parser.add_argument('-d', '--darken-until', type=parse_darken_until_date, dest='darken_until_date',
                          nargs='?', const='today', help='Darken until date. '
                         '(defaults to today if argument is not given)')
+    
+    parser.add_argument('-o', '--origin_date', type=lambda x: x if x == "birthdate" else "monday",
+                        dest='origin_date', help='Origin date of the calendar. '
+                        'Accepts either "birthdate" or "monday". '
+                        'Monday is the first day of the week of birthday. '
+                        '(defaults to "birthdate")')
 
     args = parser.parse_args()
     doc_name = '%s.pdf' % (os.path.splitext(args.filename)[0])
 
     try:
         gen_calendar(args.date, args.title, args.age, doc_name, args.darken_until_date,
-                     sidebar_text=args.sidebar_text, subtitle_text=args.subtitle_text)
+                     sidebar_text=args.sidebar_text, subtitle_text=args.subtitle_text, origin_date=args.origin_date)
     except Exception as e:
         print("Error: %s" % e)
         return
