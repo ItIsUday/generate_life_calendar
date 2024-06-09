@@ -29,7 +29,7 @@ is 29x40 inches, for best printing results)
 
 Several additional features make navigation through the calendar a bit easier;
 
-1. The starting date is your birthdate (inclusive)
+1. The starting date can be your birthdate or the first day of the week of your birthday.
 
 2. For each row, the date of the first day of the first box in the row is
    printed on the right hand side. This date is always a Monday, as explained in
