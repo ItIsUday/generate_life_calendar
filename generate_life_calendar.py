@@ -67,9 +67,12 @@ def draw_square(ctx, pos_x, pos_y, box_size, fillcolour=(1, 1, 1)):
 
     ctx.set_line_width(BOX_LINE_WIDTH)
     ctx.set_source_rgb(0, 0, 0)
-    ctx.move_to(pos_x, pos_y)
 
-    ctx.rectangle(pos_x, pos_y, box_size, box_size)
+    x_center = pos_x + box_size / 2
+    y_center = pos_y + box_size / 2
+    
+    ctx.move_to(x_center, y_center)
+    ctx.arc(x_center, y_center, box_size / 2, 0, 2 * math.pi)
     ctx.stroke_preserve()
 
     ctx.set_source_rgb(*fillcolour)
